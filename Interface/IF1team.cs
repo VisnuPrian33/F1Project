@@ -10,6 +10,8 @@ namespace F1Project.Interface
         Task<F1team?> AddF1teamAsync(F1team f1team);
         Task<F1team?> UpdateF1teamAsync(F1team f1team);
         Task<bool> DeleteF1teamAsync(int id);
+        Task<int> GetTeamCountAsync();
+        Task<List<F1team>> GetF1teamsByFoundedYearAsync(int year);
 
     }
 }

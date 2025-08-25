@@ -1,5 +1,6 @@
 ﻿using F1Project.Interface;
 using F1Project.Models;
+using F1Project.Repository;
 
 namespace F1Project.Service
 {
@@ -17,5 +18,8 @@ namespace F1Project.Service
         public Task<F1driver?> AddF1driverAsync(F1driver f1driver) => _f1driverrepository.AddF1driverAsync(f1driver);
         public Task<F1driver?> UpdateF1driverAsync(F1driver f1driver) => _f1driverrepository.UpdateF1driverAsync(f1driver);
         public Task<bool> DeleteF1driverAsync(int id) => _f1driverrepository.DeleteF1driverAsync(id);
+        public Task<int> GetDriverCountAsync() => _f1driverrepository.GetDriverCountAsync();
+        public Task<List<F1driver>> GetDriversByNationalityAsync(string nationality) =>
+            _f1driverrepository.GetDriversByNationalityAsync(nationality);
     }
 }

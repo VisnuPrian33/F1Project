@@ -10,5 +10,8 @@ namespace F1Project.Interface
         public Task<F1driver?> AddF1driverAsync(F1driver f1driver);
         public Task<F1driver?> UpdateF1driverAsync(F1driver f1driver);
         public Task<bool> DeleteF1driverAsync(int id);
+        public Task<int> GetDriverCountAsync();
+        public Task<List<F1driver>> GetDriversByNationalityAsync(string nationality);
+
     }
 }

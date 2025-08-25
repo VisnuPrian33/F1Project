@@ -61,5 +61,17 @@ namespace F1Project.Repository
             await _context.SaveChangesAsync();
             return existingChampion;
         }
+
+        public async Task<int> GetChampionCountAsync()
+        {
+            return await _context.WorldChampions.CountAsync();
+        }
+
+        public async Task<List<WorldChampion>> GetWorldChampionsByPointsRangeAsync(int minPoints, int maxPoints)
+        {
+            return await _context.WorldChampions
+                .Where(c => c.Points >= minPoints && c.Points <= maxPoints)
+                .ToListAsync();
+        }
     }
 }

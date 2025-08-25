@@ -13,5 +13,6 @@ namespace F1Project.Service
         
         public Task<List<User>> GetUsersAsync() => _userRepository.GetUsersAsync();
         public Task<User?> AddUserAsync(User user) => _userRepository.AddUserAsync(user);
+        public Task<List<User>> GetUsersByRoleAsync(string role) => _userRepository.GetUsersByRoleAsync(role);
     }
 }

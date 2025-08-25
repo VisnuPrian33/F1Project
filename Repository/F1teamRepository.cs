@@ -62,5 +62,13 @@ namespace F1Project.Repository
             await _context.SaveChangesAsync();
             return true;
         }
+        public async Task<int> GetTeamCountAsync()
+        {
+            return await _context.F1teams.CountAsync();
+        }
+        public async Task<List<F1team>> GetF1teamsByFoundedYearAsync(int year) =>
+            await _context.F1teams
+                .Where(t => t.FoundedYear <= year)
+                .ToListAsync();
     }
 }

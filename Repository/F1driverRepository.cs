@@ -61,5 +61,15 @@ namespace F1Project.Repository
             await _context.SaveChangesAsync();
             return existingDriver;
         }
+        public async Task<int> GetDriverCountAsync()
+        {
+            return await _context.F1drivers.CountAsync();
+        }
+        public async Task<List<F1driver>> GetDriversByNationalityAsync(string nationality)
+        {
+            return await _context.F1drivers
+                .Where(d => d.Nationality == nationality)
+                .ToListAsync();
+        }
     }
 }

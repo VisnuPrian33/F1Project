@@ -33,7 +33,7 @@ namespace F1Project.Controllers
             return await _service.GetF1teamsAsync();
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("Search_by_TeamId/{id}")]
         [Authorize(Roles = "User,Admin")]
         public async Task<ActionResult<F1team>> GetF1team(int id)
         {
@@ -45,7 +45,7 @@ namespace F1Project.Controllers
             return team;
         }
 
-        [HttpGet("name/{name}")]
+        [HttpGet("Search_by_TeamName/{name}")]
         [Authorize(Roles = "User,Admin")]
         public async Task<ActionResult<F1team>> GetF1teamByName(string name)
         {
@@ -120,6 +120,22 @@ namespace F1Project.Controllers
                 return NotFound();
             }
             return NoContent();
+        }
+
+        [HttpGet("CountOfTeams")]
+        [Authorize(Roles = "User,Admin")]
+        public async Task<ActionResult<int>> GetCountOfTeams()
+        {
+            var count = await _service.GetTeamCountAsync();
+            return Ok(count);
+        }
+
+        [HttpGet("TeamsFoundedBefore/{year}")]
+        [Authorize(Roles = "User,Admin")]
+        public async Task<ActionResult<List<F1team>>> GetTeamsFoundedAfter(int year)
+        {
+            var teams = await _service.GetF1teamsByFoundedYearAsync(year);
+            return Ok(teams);
         }
     }
 }

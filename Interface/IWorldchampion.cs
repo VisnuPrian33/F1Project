@@ -10,5 +10,7 @@ namespace F1Project.Interface
         public Task<WorldChampion?> AddWorldChampionAsync(WorldChampion worldChampion);
         public Task<WorldChampion?> UpdateWorldChampionAsync(WorldChampion worldChampion);
         public Task<bool> DeleteWorldChampionAsync(int id);
+        public Task<int> GetChampionCountAsync();
+        public Task<List<WorldChampion>> GetWorldChampionsByPointsRangeAsync(int minPoints, int maxPoints);
     }
 }

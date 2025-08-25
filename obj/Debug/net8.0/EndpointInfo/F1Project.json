@@ -89,7 +89,7 @@
         }
       }
     },
-    "/api/F1driver/{id}": {
+    "/api/F1driver/Search_by_DriverId/{id}": {
       "get": {
         "tags": [
           "F1driver"
@@ -127,7 +127,48 @@
             }
           }
         }
-      },
+      }
+    },
+    "/api/F1driver/Search_by_DriverName/{name}": {
+      "get": {
+        "tags": [
+          "F1driver"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/F1driver"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/F1driver"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/F1driver"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/F1driver/{id}": {
       "put": {
         "tags": [
           "F1driver"
@@ -207,14 +248,46 @@
         }
       }
     },
-    "/api/F1driver/name/{name}": {
+    "/api/F1driver/CountOfDrivers": {
+      "get": {
+        "tags": [
+          "F1driver"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/F1driver/Filter_by_Nationality/{nationality}": {
       "get": {
         "tags": [
           "F1driver"
         ],
         "parameters": [
           {
-            "name": "name",
+            "name": "nationality",
             "in": "path",
             "required": true,
             "schema": {
@@ -228,17 +301,26 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/F1driver"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/F1driver"
+                  }
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/F1driver"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/F1driver"
+                  }
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/F1driver"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/F1driver"
+                  }
                 }
               }
             }
@@ -330,7 +412,7 @@
         }
       }
     },
-    "/api/F1team/{id}": {
+    "/api/F1team/Search_by_TeamId/{id}": {
       "get": {
         "tags": [
           "F1team"
@@ -368,7 +450,48 @@
             }
           }
         }
-      },
+      }
+    },
+    "/api/F1team/Search_by_TeamName/{name}": {
+      "get": {
+        "tags": [
+          "F1team"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/F1team"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/F1team"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/F1team"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/F1team/{id}": {
       "put": {
         "tags": [
           "F1team"
@@ -431,18 +554,51 @@
         }
       }
     },
-    "/api/F1team/name/{name}": {
+    "/api/F1team/CountOfTeams": {
+      "get": {
+        "tags": [
+          "F1team"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/F1team/TeamsFoundedAfter/{year}": {
       "get": {
         "tags": [
           "F1team"
         ],
         "parameters": [
           {
-            "name": "name",
+            "name": "year",
             "in": "path",
             "required": true,
             "schema": {
-              "type": "string"
+              "type": "integer",
+              "format": "int32"
             }
           }
         ],
@@ -452,17 +608,26 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/F1team"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/F1team"
+                  }
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/F1team"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/F1team"
+                  }
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/F1team"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/F1team"
+                  }
                 }
               }
             }
@@ -578,6 +743,54 @@
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Users/Filter_by_Role/{role}": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "parameters": [
+          {
+            "name": "role",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/User"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/User"
+                  }
                 }
               }
             }
@@ -708,7 +921,7 @@
         }
       }
     },
-    "/api/Worldchampion/{id}": {
+    "/api/Worldchampion/Search_by_ChampionId/{id}": {
       "get": {
         "tags": [
           "Worldchampion"
@@ -746,7 +959,48 @@
             }
           }
         }
-      },
+      }
+    },
+    "/api/Worldchampion/Search_by_ChampionName/{name}": {
+      "get": {
+        "tags": [
+          "Worldchampion"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorldChampion"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorldChampion"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorldChampion"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Worldchampion/{id}": {
       "put": {
         "tags": [
           "Worldchampion"
@@ -826,18 +1080,60 @@
         }
       }
     },
-    "/api/Worldchampion/name/{name}": {
+    "/api/Worldchampion/CountOfChampions": {
+      "get": {
+        "tags": [
+          "Worldchampion"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Worldchampion/Filter_by_Points/{min}/{max}": {
       "get": {
         "tags": [
           "Worldchampion"
         ],
         "parameters": [
           {
-            "name": "name",
+            "name": "min",
             "in": "path",
             "required": true,
             "schema": {
-              "type": "string"
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "max",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
             }
           }
         ],
@@ -847,17 +1143,26 @@
             "content": {
               "text/plain": {
                 "schema": {
-                  "$ref": "#/components/schemas/WorldChampion"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WorldChampion"
+                  }
                 }
               },
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/WorldChampion"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WorldChampion"
+                  }
                 }
               },
               "text/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/WorldChampion"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/WorldChampion"
+                  }
                 }
               }
             }

@@ -31,7 +31,7 @@ namespace F1Project.Controllers
             return await _service.GetF1driversAsync();
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("Search_by_DriverId/{id}")]
         [Authorize(Roles = "User,Admin")]
         public async Task<ActionResult<F1driver>> GetF1driver(int id)
         {
@@ -43,7 +43,7 @@ namespace F1Project.Controllers
             return driver;
         }
 
-        [HttpGet("name/{name}")]
+        [HttpGet("Search_by_DriverName/{name}")]
         [Authorize(Roles = "User,Admin")]
         public async Task<ActionResult<F1driver>> GetF1driverByName(string name)
         {
@@ -119,6 +119,26 @@ namespace F1Project.Controllers
                 return NotFound();
             }
             return NoContent();
+        }
+
+        [HttpGet("CountOfDrivers")]
+        [Authorize(Roles = "User,Admin")]
+        public async Task<ActionResult<int>> GetDriverCount()
+        {
+            var count = await _service.GetDriverCountAsync();
+            return Ok(count);
+        }
+
+        [HttpGet("Filter_by_Nationality/{nationality}")]
+        [Authorize(Roles = "User,Admin")]
+        public async Task<ActionResult<List<F1driver>>> GetDriversByNationality(string nationality)
+        {
+            var drivers = await _service.GetDriversByNationalityAsync(nationality);
+            if (drivers == null || drivers.Count == 0)
+            {
+                return NotFound($"No drivers found with nationality: {nationality}");
+            }
+            return Ok(drivers);
         }
     }
 }

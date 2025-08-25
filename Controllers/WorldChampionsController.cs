@@ -26,7 +26,7 @@ namespace F1Project.Controllers
             return Ok(champions);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("Search_by_ChampionId/{id}")]
         [Authorize(Roles = "User,Admin")]
         public async Task<ActionResult<WorldChampion>> GetWorldChampionById(int id)
         {
@@ -36,7 +36,7 @@ namespace F1Project.Controllers
             return Ok(champion);
         }
 
-        [HttpGet("name/{name}")]
+        [HttpGet("Search_by_ChampionName/{name}")]
         [Authorize(Roles = "User,Admin")]
         public async Task<ActionResult<WorldChampion>> GetWorldChampionByName(string name)
         {
@@ -100,6 +100,22 @@ namespace F1Project.Controllers
             if (!deleted)
                 return NotFound($"WorldChampion with Id = {id} not found.");
             return NoContent();
+        }
+
+        [HttpGet("CountOfChampions")]
+        [Authorize(Roles = "User,Admin")]
+        public async Task<ActionResult<int>> GetCountOfChampions()
+        {
+            var count = await _worldchampionService.GetChampionCountAsync();
+            return Ok(count);
+        }
+
+        [HttpGet("Filter_by_Points/{min}/{max}")]
+        [Authorize(Roles = "User,Admin")]
+        public async Task<ActionResult<List<WorldChampion>>> GetByPointsRange(int min, int max)
+        {
+            var champions = await _worldchampionService.GetWorldChampionsByPointsRangeAsync(min, max);
+            return Ok(champions);
         }
     }
 }

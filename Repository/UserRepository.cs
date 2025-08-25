@@ -23,5 +23,12 @@ namespace F1Project.Repository
         {
             return await _context.Users.ToListAsync();
         }
+
+        public async Task<List<User>> GetUsersByRoleAsync(string role)
+        {
+            return await _context.Users
+                                 .Where(u => u.Role == role)
+                                 .ToListAsync();
+        }
     }
 }

@@ -16,5 +16,7 @@ namespace F1Project.Service
         public Task<WorldChampion?> AddWorldChampionAsync(WorldChampion worldChampion) => _worldchampionRepository.AddWorldChampionAsync(worldChampion);
         public Task<WorldChampion?> UpdateWorldChampionAsync(WorldChampion worldChampion) => _worldchampionRepository.UpdateWorldChampionAsync(worldChampion);
         public Task<bool> DeleteWorldChampionAsync(int id) => _worldchampionRepository.DeleteWorldChampionAsync(id);
+        public Task<int> GetChampionCountAsync() => _worldchampionRepository.GetChampionCountAsync();
+        public Task<List<WorldChampion>> GetWorldChampionsByPointsRangeAsync(int minPoints, int maxPoints) => _worldchampionRepository.GetWorldChampionsByPointsRangeAsync(minPoints, maxPoints);
     }
 }

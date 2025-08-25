@@ -18,5 +18,7 @@ namespace F1Project.Service
         public Task<F1team?> AddF1teamAsync(F1team f1team) => _f1teamRepository.AddF1teamAsync(f1team);
         public Task<F1team?> UpdateF1teamAsync(F1team f1team) => _f1teamRepository.UpdateF1teamAsync(f1team);
         public Task<bool> DeleteF1teamAsync(int id) => _f1teamRepository.DeleteF1teamAsync(id);
+        public Task<int> GetTeamCountAsync() => _f1teamRepository.GetTeamCountAsync();
+        public Task<List<F1team>> GetF1teamsByFoundedYearAsync(int year) => _f1teamRepository.GetF1teamsByFoundedYearAsync(year);
     }
 }
